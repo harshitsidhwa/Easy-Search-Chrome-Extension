@@ -8,9 +8,13 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
     if( request.message === "open_new_tab" ) {
+      if(request.url!=""){
       var res = "https://www.google.com/search?q=" + encodeURI(request.url);
-      alert(res);
       chrome.tabs.create({"url": res});
+    }
+    else {
+      alert("Please Highlight/Select Something to Search");
+    }
     }
   }
 );
